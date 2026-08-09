@@ -2,9 +2,9 @@
 class Ocsessnotify < Formula
   desc "Post a message to the most recent opencode session on the LAN"
   homepage "https://github.com/Munger/InfraTools"
-  url "https://raw.githubusercontent.com/Munger/InfraTools/ocsessnotify-v1.0.1/ocsessnotify/usr/local/bin/ocsessnotify"
-  version "1.0.1"
-  sha256 "8a5148ca6b14a2fd8d0a7b622b0d6372b5b5139056126b3466be5d9be7849027"
+  url "https://raw.githubusercontent.com/Munger/InfraTools/ocsessnotify-v1.0.2/ocsessnotify/usr/local/bin/ocsessnotify"
+  version "1.0.2"
+  sha256 "65a26c172180279c1039113af14e19dd63c731ef3248f04a07eaee73396a7ea0"
   license "MIT"
 
   depends_on "jq"
