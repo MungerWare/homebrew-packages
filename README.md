@@ -1,10 +1,10 @@
-# Munger Homebrew Tap
+# MungerWare Homebrew Tap
 
-Homebrew tap for Munger software packages.
+Homebrew tap for MungerWare software packages.
 
 ## Usage
 
 ```bash
-brew tap Munger/packages
-brew install mirror-dedupe
+brew tap MungerWare/packages
+brew install opencode
 ```
