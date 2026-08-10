@@ -16,7 +16,11 @@ jobs:
           persist-credentials: true
 
       - name: Generate directory indexes
-        run: python3 scripts/generate-dir-indexes.py
+        uses: MungerWare/actions/.github/actions/generate-dir-indexes@main
+        with:
+          title: MungerWare Homebrew Tap
+          version-column: "true"
+          skip: scripts,.github
 
       - name: Commit and push if changed
         run: |
