@@ -81,15 +81,18 @@ def build_sub_page(dirpath: str, rel: str) -> str:
 
 def main() -> None:
     root = "."
+    # Directories not part of the served site — skip index generation
+    SKIP = {"scripts", ".github"}
     for current, dirs, _files in os.walk(root):
         if current == root:
             continue  # root index.html is hand-crafted
 
         rel = os.path.relpath(current, root)
-        # Skip hidden directories (e.g. .git) — not served
-        if "/" in rel and any(p.startswith(".") for p in rel.split("/")):
+        parts = rel.split("/")
+        if any(p in SKIP for p in parts):
             continue
-        if rel.startswith("."):
+        # Skip hidden directories (e.g. .git) — not served
+        if any(p.startswith(".") for p in parts):
             continue
 
         html = build_sub_page(current, rel)
