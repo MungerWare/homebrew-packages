@@ -4,7 +4,7 @@ class Opencode < Formula
   homepage "https://github.com/Munger/opencode"
   url "https://github.com/Munger/opencode/releases/download/v1.18.15-mw.1/opencode-darwin-arm64"
   version "1.18.15-mw.1"
-  sha256 "92196313b173f7a06dbeee76bdd98a52bea30da6042622c22b76ae362f4094f9"
+  sha256 "3ae2bdafb9af7077ca6d6b49c4dd3aec4e24f7c5d3a1a48dc4d4b607bf7cac3a"
   license "MIT"
 
   def install
