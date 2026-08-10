@@ -2,6 +2,21 @@
 """Generate static index.html for every directory in the repo."""
 
 import os
+import re
+
+
+def formula_version(path: str) -> str:
+    if not path.endswith(".rb"):
+        return "-"
+    try:
+        with open(path, encoding="utf-8") as f:
+            for line in f:
+                m = re.search(r'version\s+"([^"]+)"', line)
+                if m:
+                    return m.group(1)
+    except OSError:
+        pass
+    return "-"
 
 
 def fmt_size(path: str) -> str:
@@ -19,14 +34,14 @@ def fmt_size(path: str) -> str:
 def dir_entry(name: str) -> str:
     return (
         f'<tr><td><a href="{name}/">{name}/</a></td>'
-        f"<td>directory</td><td>-</td></tr>"
+        f"<td>directory</td><td>-</td><td>-</td></tr>"
     )
 
 
-def file_entry(name: str, size: str) -> str:
+def file_entry(name: str, size: str, version: str = "-") -> str:
     return (
         f'<tr><td><a href="{name}">{name}</a></td>'
-        f"<td>file</td><td>{size}</td></tr>"
+        f"<td>file</td><td>{size}</td><td>{version}</td></tr>"
     )
 
 
@@ -43,7 +58,7 @@ SUB_PAGE_TOP = """<!DOCTYPE html>
 <div class="page">
 <p style="margin:12px 0 4px"><a href="/">MungerWare Homebrew Tap</a> / <span id="dirpath">{title}/</span></p>
 <table>
-<thead><tr><th>Name</th><th>Type</th><th>Size</th></tr></thead>
+<thead><tr><th>Name</th><th>Type</th><th>Size</th><th>Version</th></tr></thead>
 <tbody>
 """
 
@@ -64,7 +79,7 @@ Copyright &copy; 2026 <a href="https://github.com/Munger">Tim Hosking</a>.
 def build_sub_page(dirpath: str, rel: str) -> str:
     parts = [SUB_PAGE_TOP.format(title=rel)]
     parts.append(
-        '        <tr><td><a href="../">../</a></td><td>directory</td><td>-</td></tr>'
+        '        <tr><td><a href="../">../</a></td><td>directory</td><td>-</td><td>-</td></tr>'
     )
     entries = sorted(os.listdir(dirpath))
     for e in entries:
@@ -74,7 +89,7 @@ def build_sub_page(dirpath: str, rel: str) -> str:
         if os.path.isdir(path):
             parts.append("        " + dir_entry(e))
         else:
-            parts.append("        " + file_entry(e, fmt_size(path)))
+            parts.append("        " + file_entry(e, fmt_size(path), formula_version(path)))
     parts.append(PAGE_BOTTOM)
     return "\n".join(parts)
 
