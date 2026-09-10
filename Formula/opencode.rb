@@ -2,9 +2,9 @@
 class Opencode < Formula
   desc "MungerWare-packaged opencode, the open source AI coding agent"
   homepage "https://github.com/Munger/opencode"
-  url "https://github.com/Munger/opencode/releases/download/v1.18.28-mw.1/opencode-darwin-arm64"
-  version "1.18.28-mw.1"
-  sha256 "fff8dac02946c3cbc3c4f0c89e46f21a7c0aceafd8ac3eb5db1ab72fc77423ac"
+  url "https://github.com/Munger/opencode/releases/download/v1.18.30-mw.1/opencode-darwin-arm64"
+  version "1.18.30-mw.1"
+  sha256 "43970e40c01822ae2c4ea014d59cf13f8032bf86b2abc881dd108516bbde9b33"
   license "MIT"
 
   def install
